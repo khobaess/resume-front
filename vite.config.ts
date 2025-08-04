@@ -14,6 +14,7 @@ function handleModuleDirectivesPlugin() {
   };
 }
 
+
 /**
  * Some chunks may be large.
  * This will not affect the loading speed of the site.
@@ -29,10 +30,23 @@ export default defineConfig({
     handleModuleDirectivesPlugin(),
     legacy({
       targets: ['defaults', 'not IE 11'],
+      renderLegacyChunks: false,
     }),
   ],
 
   build: {
     outDir: 'build',
+  },
+
+  server: {
+    port: 5173,
+    open: true,
+    proxy: {
+      '/api': {
+        target: 'https://resume-dev.onrender.com',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
 });
