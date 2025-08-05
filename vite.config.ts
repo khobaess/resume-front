@@ -43,7 +43,7 @@ export default defineConfig({
     open: true,
     proxy: {
       '/api': {
-        target: 'https://resume-dev.onrender.com',
+        target: {https},
         changeOrigin: true,
         secure: false,
       },
